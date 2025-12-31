@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<style>
+html, body {font-family: 'Roboto', serif;}
+body { background: #fff; color: #444; font-size: 14pt;}
+a { color: #444; text-decoration: none;}
+a:hover { text-decoration: underline;}
+a:visited { color: #444;}
+h1 { text-align: center;}
+#content-wrapper {
+    width: 900px; margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.menu { list-style-type: none; padding: 0; margin: 0;}
+.menu > li { background: url(/static/li-bg.png) center repeat-x; padding: 0; text-align: right; height: 51px; line-height: 51px;}
+.menu > li > a {
+    background: url(/static/right-a-bg.png) left center no-repeat;
+    color: #fff;
+    padding: 0.3em 0.7em 0.3em 1.4em; margin: 10px 0 10px 0; height: 31px; line-height: 31px; vertical-align: center;
+}
+.menu__left > li { text-align: left;}
+.menu__left > li > a { background: url(/static/left-a-bg.png) right center no-repeat; padding: 0.3em 1.4em 0.3em 0.7em;}
+
+#left-menu { flex-basis: 50%;}
+#foto { border: solid 10px #aaa;}
+#right-menu { flex-basis: 50%;}
+
+#__right-menu {  list-style-type: none; margin: 0; padding: 0; width: 380px; position: absolute; left: 420px; top: 20px;}
+#__right-menu li { background: url(/static/li-bg.png) center repeat-x; padding: 0; text-align: right; display: block; height: 51px; }
+#__right-menu li a { background: url(/static/a-bg.png) left center no-repeat #aaa; color: #fff; padding: 0 0.7em 0 1.4em; margin: 10px 0 10px 0;/* border-left: dotted 1px #aaa;*/ display: block; height: 31px; float: right; line-height: 31px; vertical-align: center;}
+</style>
+</head>
+<body>
+    <h1>Jirka Mikulášek / Králík</h1>
+
+    <div id="content-wrapper">
+        <ul class="menu menu__left" id="left-menu">
+            <li><a href="http://kralicizapisnicek.blogspot.cz/">Králičí zápisníček</a></li>
+            <li><a href="http://instagram.com/jmikulasek">Instagram</a></li>
+            <li><a href="https://photos.app.goo.gl/cCKPHMA7ARKtJznG6">Králičí fotky</a></li>
+            <li><a href="/texty/basnicky/">Básničky</a></li>
+            <li><a href="/wishlist/">Wishlist</a></li>
+            <li><a href="/hadani-obrazku/">Hádání obrázků</a></li>
+        </ul>
+        <img src="foto.jpg" id="foto">
+        <ul class="menu" id="right-menu">
+            <li><a href="http://jiri.mikulasek.net">Živnost</a></li>
+            <li><a href="http://www.safetrees.cz">Zaměstnání</a></li>
+            <li><a href="http://www.betanie.cz">Betanie</a></li>
+            <li><a href="http://www.betanie.cz/dorost/">Dorost</a></li>
+        </ul>
+    </div>
+</body>
+</html>

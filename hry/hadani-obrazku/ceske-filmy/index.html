@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+html, body { margin: 0; padding: 0; position: relative; font-family: serif;}
+#teams { padding: 2em; font-size: 32px; text-align: center; line-height: 1.4em;}
+#teams h1 { text-transform: uppercase;}
+#teams input { border:0; border-bottom: solid 1px #ddd; width: 40%; padding: 0.3em; font-size: 32px; font-family: serif;}
+#teams span.add-team { padding: 0 1em; font-weight: bold; border: solid 1px #ddd;}
+#buttons-edit-teams { margin-top: 1em;}
+#buttons-edit-teams span { border: solid 1px #ddd; padding: 0.4em; cursor: pointer;}
+#buttons-edit-teams span:hover { border: solid 3px #ddd; padding: 0.4em; cursor: pointer;}
+#buttons { position: absolute; top: 0; right: 0; display: inline-block; cursor: pointer;}
+#buttons div { cursor: pointer; background: #eee; padding: 1em;}
+#buttons div:hover { background: #ddd;}
+div.task { display: none; height: 800px; width: 800px; margin: 0 auto; position: relative; text-align: center; font-size: 32px;}
+div.task img { margin: auto auto;}
+#winner { font-size: 64px; text-align: center; padding: 1em; width: 100%; height: 100%;}
+</style>
+</head>
+<body>
+<div id="teams">
+<h1 style="line-height: 0.9em"><span style="font-size: 50%">Hádání obrázků</span><br>České filmy</h1>
+<div id="team-names"></div>
+<div id="buttons-edit-teams">
+<span onclick="add_team()">Přidat tým</span>
+<span onclick="start_game()">Začít hru</span>
+</div>
+</div>
+</body>
+<script>
+var images = [
+    "Světáci.jpg", 
+    "S Tebou mě baví svět.jpg", 
+    "Saturnin.jpg", 
+    "Vratné lahve.jpg", 
+    "Báječná léta pod psa.jpg", 
+    "Cesta do pravěku.jpg", 
+    "Dědictví aneb Kurvahošigutntág.jpg", 
+    "Jáchyme, hoď ho do stroje.jpg", 
+    "Kolja.jpg", 
+    "Šakalí léta.jpg", 
+    "Želary.jpg", 
+    "Adéla ještě nevečeřela.jpg", 
+    "Slavnosti sněženek.jpg", 
+    "Spalovač mrtvol.jpg", 
+    "Tmavomodrý svět.jpg", 
+    "Vesničko má středisková.jpg", 
+    "Kulový blesk.jpg", 
+    "Limonádový Joe.jpg", 
+    "Obecná škola.jpg", 
+    "Ostře sledované vlaky.jpg", 
+    "Pane, vy jste vdova.jpg", 
+    "Pelíšky.jpg", 
+    "Postřižiny.jpg", 
+    "Vrchní prchni.jpg", 
+    "Vyšší princip.jpg", 
+];
+
+var image_count = images.length;
+var cols = 7;
+var rows = 7;
+var current_image = 0;
+var team_count = 0;
+var teams = [];
+
+function add_team() {
+    var div = document.createElement("div");
+    var input = document.createElement("input");
+    input.classList.add("input-team-name");
+    div.append(input);
+    document.getElementById("team-names").append(div);
+    input.focus();
+}
+
+function start_game() {
+    var div_buttons = document.getElementById("buttons");
+    var team_name_inputs = document.getElementsByClassName("input-team-name");
+    for (var i=0; i<team_name_inputs.length; i++) {
+        if (team_name_inputs[i].value) {
+            var team = {}
+            team["name"] = team_name_inputs[i].value;
+            team["points"] = 0;
+            teams.push(team);
+            team_count += 1;
+        }
+    }
+
+    // Tlacitka, ktera pridaji bod viteznemu tymu a prejdou na dalsi ukol
+    for (var i=0; i<teams.length; i++) {
+        var div_team = document.createElement("div");
+        div_team.id="button-team-" + i;
+        div_team.classList.add("button-team");
+        div_team.innerHTML = teams[i]["name"] + " (0)";
+        div_team.setAttribute("team", i);
+        div_team.style.display = "none";
+        div_team.addEventListener("click", function (event) {
+            var team_number = event.target.getAttribute("team");
+            teams[team_number]["points"] += 1;
+            for (var j=0; j<team_count; j++) {
+                var point_counter = document.getElementById("button-team-" + j);
+                point_counter.innerHTML = teams[j]["name"] + " (" + teams[j]["points"] + ")";
+            }
+            var team_buttons = document.getElementsByClassName("button-team");
+            for (var i=0; i<team_buttons.length; i++) {
+                team_buttons[i].style.display = "none";
+            }
+            document.getElementById("reveal-button").style.display = "block";
+            current_image += 1;
+            show_next_task();
+        });
+        div_buttons.appendChild(div_team);
+    }
+
+    document.getElementById("teams").style.display = "none";
+    document.getElementById("tasks").style.display = "block";
+    document.getElementById("buttons").style.display = "block";
+}
+
+function show_next_task() {
+    if (current_image >= image_count) {
+        document.getElementById("teams").style.display = "none";
+        document.getElementById("tasks").style.display = "none";
+        document.getElementById("buttons").style.display = "none";
+        var max_points = 0;
+        for (var i=0; i<teams.length; i++) {
+            if (teams[i]["points"] > max_points)
+                max_points = teams[i]["points"];
+        }
+        var winners = [];
+        for (var i=0; i<teams.length; i++) {
+            if (teams[i]["points"] == max_points)
+                winners.push(teams[i]);
+        }
+        var winner_text = [];
+        if (winners.length == 1) {
+            winner_text.push("Vítězem se stává tým");
+            winner_text.push("<strong>" + winners[0]["name"] + "</strong>");
+            winner_text.push("Gratulujeme!");
+        } else if (winners.length == teams.length) {
+            winner_text.push("Všechny týmy mají stejný počet bodů");
+            winner_text.push("a tak vyhrávájí všichni!");
+            winner_text.push("Gratulujeme!");
+        } else {
+            winner_text.push("O první místo se dělí tyto týmy:");
+            for (var i=0; i<winners.length; i++) {
+                winner_text.push("<strong>" + winners[i]["name"] + "</strong>");
+            }
+            winner_text.push("Gratulujeme!");
+        }
+        document.getElementById("winner").innerHTML = winner_text.join("<br>");
+        document.getElementById("winner").style.display = "block";
+    } else {
+        prepare_current_image();
+        // Hide all images.
+        var divs = document.getElementsByClassName("task");
+        for (var i=0; i<divs.length; i++) {
+            divs[i].style.display = "none";
+        }
+        
+        // Show the current one.
+        var div_image = document.getElementById("task-" + current_image);
+        div_image.style.display = "block";
+    }
+    
+}
+
+function prepare_current_image() {
+    var task = document.getElementById("task-" + current_image);
+    var image = document.getElementById("image-" + current_image);
+    var width =  image.width;
+    var height = image.height;
+    task.style.width = width + "px";
+    var col_width = (width - (width % cols)) / cols;
+    var row_height = (height - (height % rows)) / rows;
+    var last_height = height - row_height * rows;
+    var last_width = width - col_width * cols;
+    var number = 1;
+    
+    for (var row=0; row < rows; row++) {
+        for (var col=0; col < cols; col++) {
+            var curtain = document.createElement("div");
+            curtain.id = "curtain-" + row + "-" + col;
+            curtain.classList.add("curtain-" + current_image);
+            curtain.style.position = "absolute";
+            if (col == cols-1) {
+                curtain.style.width = (col_width+last_width) + "px";
+            } else {
+                curtain.style.width = col_width + "px";
+            }
+            if (row == rows-1) {
+                curtain.style.height = (row_height+last_height) + "px";
+            } else {
+                curtain.style.height = row_height + "px";
+            }
+            curtain.style.left = col * col_width + "px";
+            curtain.style.top = row * row_height + "px";
+            curtain.style.background = "black";
+            curtain.style.color = "white";
+            curtain.style.cursor = "pointer";
+            //curtain.style.border = "solid 1px #555";
+            curtain.style.textAlign = "center";
+            curtain.style.lineHeight = row_height + "px";
+            curtain.style.fontSize = "24px";
+            curtain.addEventListener("click", function (event) {
+                event.target.style.display = "none";
+            });
+            task.appendChild(curtain);
+            curtain.innerHTML = number;
+            number += 1;
+        }
+    }
+}
+
+function init() {
+    var window_height = window.innerHeight;
+
+    // Kontejner na obrazky.
+    var div_tasks = document.createElement("div");
+    div_tasks.id = "tasks";
+    div_tasks.style.display = "none";
+    document.body.appendChild(div_tasks);
+
+    // Tlacitko, ktere odkryje aktualni obrazek.
+    var div_buttons = document.createElement("div");
+    div_buttons.id = "buttons";
+    div_buttons.style.display = "none";
+    document.body.appendChild(div_buttons);
+    
+    // Tlacitko, ktere odkryje aktualni obrazek.
+    var div_reveal = document.createElement("div");
+    div_reveal.innerHTML = "Odkrýt";
+    div_reveal.id = "reveal-button";
+    div_reveal.addEventListener("click", function (event) {
+        var curtains = document.getElementsByClassName("curtain-" + current_image);
+        for (var i=0; i<curtains.length; i++) {
+            curtains[i].style.display = "none";
+        }
+        document.getElementById("label-"+current_image).style.display = "inline";
+        var team_buttons = document.getElementsByClassName("button-team");
+        for (var i=0; i<team_buttons.length; i++) {
+            team_buttons[i].style.display = "block";
+        }
+        event.target.style.display = "none";
+    });
+    div_buttons.appendChild(div_reveal);
+
+    // Ukoly
+    for (var i=0; i<images.length; i++) {
+        var div_task = document.createElement("div");
+        div_task.classList.add("task");
+        div_task.id = ("task-" + i);
+        div_task.innerHTML = "<img id='image-" + i + "' src='" + images[i] + "'><br><span id='label-" + i + "' style='display: none'>" + images[i].slice(0, -4) + "</span";
+        div_tasks.appendChild(div_task);
+    }
+
+    var div_winner = document.createElement("div");
+    div_winner.id = "winner";
+    div_winner.style.display = "none";
+    div_winner.style.height = window_height + "px";
+    document.body.appendChild(div_winner);
+
+}
+
+init();
+window.addEventListener("load", function(event) {
+    show_next_task();
+});
+</script>
+</html>

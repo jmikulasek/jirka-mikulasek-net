@@ -1,0 +1,11 @@
+@font-face { font-family: BebasNeue; src: url('BebasNeue.otf'); } 
+body { background-color: #fff; color: #444; line-height: 140%;}
+h1 { font-family: BebasNeue, sans-serif; font-size: 48pt; line-height: 110%;}
+blockquote { margin: 0 0 1em 3em; font-style: italic;}
+#page { width: 900px; margin: 0 auto;}
+#menu { border-bottom: dotted 1px #eee; padding: 4px 0;}
+#menu ul { list-style-type: none; padding: 0; margin: 0;}
+#menu ul li{ display: inline; padding: 0 1em 0 0;}
+#menu ul li.menu-item-home{ font-weight: bold;}
+
+table.entries tr td:first-child { text-align: right; color: #777;}

@@ -1,0 +1,970 @@
+<!doctype html>
+<html>
+<head>
+<style>
+#board {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 6em 6em 6em 6em 6em;
+    column-gap: 2rem;
+    row-gap: 2rem;
+}
+#board > div {text-align: center; border: solid 1px #ddd; border-radius: 8px; display: flex; justify-content: center; flex-direction: column;}
+#board > div.red { background-color: indianred; font-weight: normal; color: indianred;}
+#board > div.blue { background-color: steelblue;  font-weight: normal; color: steelblue;}
+#board > div.innocent { background-color: wheat;  font-weight: normal; color: wheat;}
+#board > div.assasin { background-color: dimgray;  font-weight: normal; color: dimgray;}
+#board > div > div.word { cursor: pointer;}
+
+.word { font-size: 24px; font-family: sans-serif;}
+.controls { display: none;}
+.control-button { border: solid 1px #ddd; border-radius: 4px; background: white; padding: 0.5rem; color: black; cursor: pointer;}
+</style>
+<script>
+function mark(event, klass) {
+    let e = event.target.parentElement.parentElement;
+    e.classList.remove("red", "blue", "innocent", "assasin");
+    e.classList.add(klass);
+    show_card(event);
+}
+
+function unmark(event) {
+    let e = event.target.parentElement.parentElement;
+    e.classList.remove("red", "blue", "innocent", "assasin");
+    show_card(event);
+}
+
+function show_controls(event) {
+    let card = event.target.parentElement;
+    
+    for (let i=0; i<card.children.length; i++) {
+        if (card.children[i].classList.contains("word")) {
+            card.children[i].style.display = "none";
+        } else if (card.children[i].classList.contains("controls")) {
+            card.children[i].style.display = "block";
+        }
+
+    }
+    event.preventDefault();
+}
+
+function show_card(event) {
+    let card = event.target.parentElement.parentElement;
+    
+    for (let i=0; i<card.children.length; i++) {
+        if (card.children[i].classList.contains("word")) {
+            card.children[i].style.display = "block";
+        } else if (card.children[i].classList.contains("controls")) {
+            card.children[i].style.display = "none";
+        }
+
+    }
+    event.preventDefault();
+}
+</script>
+</head>
+<body>
+<div id="board">
+    <div id="card-0">
+        <div class="word" onclick="show_controls(event)"></div>
+        <div class="controls">
+            <span class="control-button" onclick="unmark(event)">&#x2212</span>
+            <span class="control-button" onclick="mark(event, 'red')">Č</span>
+            <span class="control-button" onclick="mark(event, 'blue')">M</span>
+            <span class="control-button" onclick="mark(event, 'innocent')">N</span>
+            <span class="control-button" onclick="mark(event, 'assasin')">V</span>
+        </div>
+    </div>
+    <div id="card-1">
+        <div class="word" onclick="show_controls(event)"></div>
+        <div class="controls">
+            <span class="control-button" onclick="unmark(event)">&#x2212</span>
+            <span class="control-button" onclick="mark(event, 'red')">Č</span>
+            <span class="control-button" onclick="mark(event, 'blue')">M</span>
+            <span class="control-button" onclick="mark(event, 'innocent')">N</span>
+            <span class="control-button" onclick="mark(event, 'assasin')">V</span>
+        </div>
+    </div>
+    <div id="card-2">
+        <div class="word" onclick="show_controls(event)"></div>
+        <div class="controls">
+            <span class="control-button" onclick="unmark(event)">&#x2212</span>
+            <span class="control-button" onclick="mark(event, 'red')">Č</span>
+            <span class="control-button" onclick="mark(event, 'blue')">M</span>
+            <span class="control-button" onclick="mark(event, 'innocent')">N</span>
+            <span class="control-button" onclick="mark(event, 'assasin')">V</span>
+        </div>
+    </div>
+    <div id="card-3">
+        <div class="word" onclick="show_controls(event)"></div>
+        <div class="controls">
+            <span class="control-button" onclick="unmark(event)">&#x2212</span>
+            <span class="control-button" onclick="mark(event, 'red')">Č</span>
+            <span class="control-button" onclick="mark(event, 'blue')">M</span>
+            <span class="control-button" onclick="mark(event, 'innocent')">N</span>
+            <span class="control-button" onclick="mark(event, 'assasin')">V</span>
+        </div>
+    </div>
+    <div id="card-4">
+        <div class="word" onclick="show_controls(event)"></div>
+        <div class="controls">
+            <span class="control-button" onclick="unmark(event)">&#x2212</span>
+            <span class="control-button" onclick="mark(event, 'red')">Č</span>
+            <span class="control-button" onclick="mark(event, 'blue')">M</span>
+            <span class="control-button" onclick="mark(event, 'innocent')">N</span>
+            <span class="control-button" onclick="mark(event, 'assasin')">V</span>
+        </div>
+    </div>
+    <div id="card-5">
+        <div class="word" onclick="show_controls(event)"></div>
+        <div class="controls">
+            <span class="control-button" onclick="unmark(event)">&#x2212</span>
+            <span class="control-button" onclick="mark(event, 'red')">Č</span>
+            <span class="control-button" onclick="mark(event, 'blue')">M</span>
+            <span class="control-button" onclick="mark(event, 'innocent')">N</span>
+            <span class="control-button" onclick="mark(event, 'assasin')">V</span>
+        </div>
+    </div>
+    <div id="card-6">
+        <div class="word" onclick="show_controls(event)"></div>
+        <div class="controls">
+            <span class="control-button" onclick="unmark(event)">&#x2212</span>
+            <span class="control-button" onclick="mark(event, 'red')">Č</span>
+            <span class="control-button" onclick="mark(event, 'blue')">M</span>
+            <span class="control-button" onclick="mark(event, 'innocent')">N</span>
+            <span class="control-button" onclick="mark(event, 'assasin')">V</span>
+        </div>
+    </div>
+    <div id="card-7">
+        <div class="word" onclick="show_controls(event)"></div>
+        <div class="controls">
+            <span class="control-button" onclick="unmark(event)">&#x2212</span>
+            <span class="control-button" onclick="mark(event, 'red')">Č</span>
+            <span class="control-button" onclick="mark(event, 'blue')">M</span>
+            <span class="control-button" onclick="mark(event, 'innocent')">N</span>
+            <span class="control-button" onclick="mark(event, 'assasin')">V</span>
+        </div>
+    </div>
+    <div id="card-8">
+        <div class="word" onclick="show_controls(event)"></div>
+        <div class="controls">
+            <span class="control-button" onclick="unmark(event)">&#x2212</span>
+            <span class="control-button" onclick="mark(event, 'red')">Č</span>
+            <span class="control-button" onclick="mark(event, 'blue')">M</span>
+            <span class="control-button" onclick="mark(event, 'innocent')">N</span>
+            <span class="control-button" onclick="mark(event, 'assasin')">V</span>
+        </div>
+    </div>
+    <div id="card-9">
+        <div class="word" onclick="show_controls(event)"></div>
+        <div class="controls">
+            <span class="control-button" onclick="unmark(event)">&#x2212</span>
+            <span class="control-button" onclick="mark(event, 'red')">Č</span>
+            <span class="control-button" onclick="mark(event, 'blue')">M</span>
+            <span class="control-button" onclick="mark(event, 'innocent')">N</span>
+            <span class="control-button" onclick="mark(event, 'assasin')">V</span>
+        </div>
+    </div>
+    <div id="card-10">
+        <div class="word" onclick="show_controls(event)"></div>
+        <div class="controls">
+            <span class="control-button" onclick="unmark(event)">&#x2212</span>
+            <span class="control-button" onclick="mark(event, 'red')">Č</span>
+            <span class="control-button" onclick="mark(event, 'blue')">M</span>
+            <span class="control-button" onclick="mark(event, 'innocent')">N</span>
+            <span class="control-button" onclick="mark(event, 'assasin')">V</span>
+        </div>
+    </div>
+    <div id="card-11">
+        <div class="word" onclick="show_controls(event)"></div>
+        <div class="controls">
+            <span class="control-button" onclick="unmark(event)">&#x2212</span>
+            <span class="control-button" onclick="mark(event, 'red')">Č</span>
+            <span class="control-button" onclick="mark(event, 'blue')">M</span>
+            <span class="control-button" onclick="mark(event, 'innocent')">N</span>
+            <span class="control-button" onclick="mark(event, 'assasin')">V</span>
+        </div>
+    </div>
+    <div id="card-12">
+        <div class="word" onclick="show_controls(event)"></div>
+        <div class="controls">
+            <span class="control-button" onclick="unmark(event)">&#x2212</span>
+            <span class="control-button" onclick="mark(event, 'red')">Č</span>
+            <span class="control-button" onclick="mark(event, 'blue')">M</span>
+            <span class="control-button" onclick="mark(event, 'innocent')">N</span>
+            <span class="control-button" onclick="mark(event, 'assasin')">V</span>
+        </div>
+    </div>
+    <div id="card-13">
+        <div class="word" onclick="show_controls(event)"></div>
+        <div class="controls">
+            <span class="control-button" onclick="unmark(event)">&#x2212</span>
+            <span class="control-button" onclick="mark(event, 'red')">Č</span>
+            <span class="control-button" onclick="mark(event, 'blue')">M</span>
+            <span class="control-button" onclick="mark(event, 'innocent')">N</span>
+            <span class="control-button" onclick="mark(event, 'assasin')">V</span>
+        </div>
+    </div>
+    <div id="card-14">
+        <div class="word" onclick="show_controls(event)"></div>
+        <div class="controls">
+            <span class="control-button" onclick="unmark(event)">&#x2212</span>
+            <span class="control-button" onclick="mark(event, 'red')">Č</span>
+            <span class="control-button" onclick="mark(event, 'blue')">M</span>
+            <span class="control-button" onclick="mark(event, 'innocent')">N</span>
+            <span class="control-button" onclick="mark(event, 'assasin')">V</span>
+        </div>
+    </div>
+    <div id="card-15">
+        <div class="word" onclick="show_controls(event)"></div>
+        <div class="controls">
+            <span class="control-button" onclick="unmark(event)">&#x2212</span>
+            <span class="control-button" onclick="mark(event, 'red')">Č</span>
+            <span class="control-button" onclick="mark(event, 'blue')">M</span>
+            <span class="control-button" onclick="mark(event, 'innocent')">N</span>
+            <span class="control-button" onclick="mark(event, 'assasin')">V</span>
+        </div>
+    </div>
+    <div id="card-16">
+        <div class="word" onclick="show_controls(event)"></div>
+        <div class="controls">
+            <span class="control-button" onclick="unmark(event)">&#x2212</span>
+            <span class="control-button" onclick="mark(event, 'red')">Č</span>
+            <span class="control-button" onclick="mark(event, 'blue')">M</span>
+            <span class="control-button" onclick="mark(event, 'innocent')">N</span>
+            <span class="control-button" onclick="mark(event, 'assasin')">V</span>
+        </div>
+    </div>
+    <div id="card-17">
+        <div class="word" onclick="show_controls(event)"></div>
+        <div class="controls">
+            <span class="control-button" onclick="unmark(event)">&#x2212</span>
+            <span class="control-button" onclick="mark(event, 'red')">Č</span>
+            <span class="control-button" onclick="mark(event, 'blue')">M</span>
+            <span class="control-button" onclick="mark(event, 'innocent')">N</span>
+            <span class="control-button" onclick="mark(event, 'assasin')">V</span>
+        </div>
+    </div>
+    <div id="card-18">
+        <div class="word" onclick="show_controls(event)"></div>
+        <div class="controls">
+            <span class="control-button" onclick="unmark(event)">&#x2212</span>
+            <span class="control-button" onclick="mark(event, 'red')">Č</span>
+            <span class="control-button" onclick="mark(event, 'blue')">M</span>
+            <span class="control-button" onclick="mark(event, 'innocent')">N</span>
+            <span class="control-button" onclick="mark(event, 'assasin')">V</span>
+        </div>
+    </div>
+    <div id="card-19">
+        <div class="word" onclick="show_controls(event)"></div>
+        <div class="controls">
+            <span class="control-button" onclick="unmark(event)">&#x2212</span>
+            <span class="control-button" onclick="mark(event, 'red')">Č</span>
+            <span class="control-button" onclick="mark(event, 'blue')">M</span>
+            <span class="control-button" onclick="mark(event, 'innocent')">N</span>
+            <span class="control-button" onclick="mark(event, 'assasin')">V</span>
+        </div>
+    </div>
+    <div id="card-20">
+        <div class="word" onclick="show_controls(event)"></div>
+        <div class="controls">
+            <span class="control-button" onclick="unmark(event)">&#x2212</span>
+            <span class="control-button" onclick="mark(event, 'red')">Č</span>
+            <span class="control-button" onclick="mark(event, 'blue')">M</span>
+            <span class="control-button" onclick="mark(event, 'innocent')">N</span>
+            <span class="control-button" onclick="mark(event, 'assasin')">V</span>
+        </div>
+    </div>
+    <div id="card-21">
+        <div class="word" onclick="show_controls(event)"></div>
+        <div class="controls">
+            <span class="control-button" onclick="unmark(event)">&#x2212</span>
+            <span class="control-button" onclick="mark(event, 'red')">Č</span>
+            <span class="control-button" onclick="mark(event, 'blue')">M</span>
+            <span class="control-button" onclick="mark(event, 'innocent')">N</span>
+            <span class="control-button" onclick="mark(event, 'assasin')">V</span>
+        </div>
+    </div>
+    <div id="card-22">
+        <div class="word" onclick="show_controls(event)"></div>
+        <div class="controls">
+            <span class="control-button" onclick="unmark(event)">&#x2212</span>
+            <span class="control-button" onclick="mark(event, 'red')">Č</span>
+            <span class="control-button" onclick="mark(event, 'blue')">M</span>
+            <span class="control-button" onclick="mark(event, 'innocent')">N</span>
+            <span class="control-button" onclick="mark(event, 'assasin')">V</span>
+        </div>
+    </div>
+    <div id="card-23">
+        <div class="word" onclick="show_controls(event)"></div>
+        <div class="controls">
+            <span class="control-button" onclick="unmark(event)">&#x2212</span>
+            <span class="control-button" onclick="mark(event, 'red')">Č</span>
+            <span class="control-button" onclick="mark(event, 'blue')">M</span>
+            <span class="control-button" onclick="mark(event, 'innocent')">N</span>
+            <span class="control-button" onclick="mark(event, 'assasin')">V</span>
+        </div>
+    </div>
+    <div id="card-24">
+        <div class="word" onclick="show_controls(event)"></div>
+        <div class="controls">
+            <span class="control-button" onclick="unmark(event)">&#x2212</span>
+            <span class="control-button" onclick="mark(event, 'red')">Č</span>
+            <span class="control-button" onclick="mark(event, 'blue')">M</span>
+            <span class="control-button" onclick="mark(event, 'innocent')">N</span>
+            <span class="control-button" onclick="mark(event, 'assasin')">V</span>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
+<script>
+var all_words = [
+"ŠKODA", "PLOUTEV", "VÁNOCE", "KOVBOJ", "KRTEK", "INDIE", "UNIVERZITA", "KUKUŘICE", "KAPITÁN",
+"LÍPA", "HRNEČEK", "KAMERA", "PÁSKA", "RŮŽENKA", "STADION", "PEŘINA", "MRAMOR", "ZOBÁK",
+"PÍSEK", "HRDINA", "VELIKONOCE", "AKVÁRIUM", "ZELÍ", "VENUŠE", "VIKING", "AUTOMAT", "KRAB",
+"SKOT", "TMA", "PĚNA", "KONEV", "KOMETA", "SOPKA", "TRUHLÍK", "POLÁRKA", "STŮL", "PANDA", "POŠŤÁK",
+"BEDNA", "NŮŽKY", "ČAJ", "DUHA", "SANĚ", "ROHLÍK", "PRSTEN", "KYVADLO", "VLTAVA", "DVŮR", "STRUNA",
+"MAJÁK", "ŽÁROVKA", "KOŠÍK", "LAVINA", "LEBKA", "UTOPENEC", "OBRAZOVKA", "PUSA", "ŠUMAVA", "KOTVA",
+"GULÁŠ", "JAZYK", "ŽRALOK", "KŘIŠŤÁL", "HOLUB", "LUPIČ", "PLAST", "PANENKA", "KAJAK", "DĚLNÍK",
+"KENTAUR", "JELEN", "TUREK", "JEDNOROŽEC", "DÝKA", "HOKEJISTA", "VĚZEŇ", "TUČŇÁK", "SRDCE",
+"PUMA", "RUM", "TEXAS", "RYBNÍK", "PĚŠÁK", "ATLAS", "DYNAMIT", "PLACHTA", "KLADIVO", "SÝR",
+"ITÁLIE", "DOKTOR", "KADEŘNICE", "POCHODEŇ", "STŘECHA", "KOBYLKA",  "SAMURAJ", "ŽEBŘÍK",
+"JUPITER", "LEKNÍN", "BIVOJ", "VANA", "ŠVÉDSKO", "LOPATKA", "BANÁN", "LOCHNESKA", "HAD", "VIDLE",
+"PEVNOST", "TŘÍDA", "LEDOVEC", "STŘEDOVĚK", "KAPKA", "TŘÍSKA", "PŘEHRADA", "KRAVATA", "ZIP",
+"HŘIB", "PLÁŽ", "PERO", "MRAVENEC", "DÉMON", "ŘÍP", "ČÁRY", "ŠACHOVNICE", "HERKULES", "PONORKA",
+"HNÍZDO", "KOMORA", "MLHA", "PAPRIKA", "KLOUZAČKA", "MUŠKETÝR", "GRIL", "VARHANY",  "ESKYMÁK", "KOTEL",
+"MUZEUM", "DETEKTIV", "BLESK", "SOKOL", "KOSTRA", "KŘÍDA", "KOLUMBUS", "KRYSTAL", "SIRÉNA", "POSTEL",
+"TUNEL", "PISTOLE", "ŠKOLA", "KMEN", "PODVODNÍK", "CHAPADLO", "PRÉRIE", "VÝCHOD", "BATERIE", "KNEDLÍK", 
+"ZLATO", "MASKA", "IGLÚ", "KŘÍDLO", "POKLAD", "PIRÁT", "PANEL", "DRUID", "PRST", "CHIRURG",
+"SKLENÍK", "VEVERKA", "KOMBAJN", "PODZIM", "PLYN", "VRCHOL", "TUŽKA", "BABIČKA", "EVROPA", "HEREC",
+"KNIHA", "KLÍČ", "AFRIKA", "KEŘ", "TYGR", "VLNA", "LÁSKA", "PÁNEV", "HLAVA", "POHÁDKA", "VÍNO",
+"SMŮLA",
+"RAJČE",
+"KÁMEN",
+"KLOKAN",
+"PRAMEN",
+"BUMERANG",
+"SLUHA",
+"GALAXIE",
+"FIGURKA",
+"AMERIČAN",
+"ŠTÍR",
+"ČOČKA",
+"VÍRA",
+"JEZERO",
+"SNĚHURKA",
+"UNIFORMA",
+"JEŘÁB",
+"HOLANĎAN",
+"ZEĎ",
+"OMÁČKA",
+"SILNICE",
+"HRAD",
+"HŘEBÍK",
+"BERLÍN",
+"CIRKUS",
+"HÁK",
+"BALKÁN",
+"RAMENO",
+"DŘEVO",
+"KROKODÝL",
+"HRNEC",
+"PLÁŠŤ",
+"ROLE",
+"KŘÍŽ",
+"LED",
+"LŽÍCE",
+"PIVO",
+"SVÍČKA",
+"PAPOUŠEK",
+"MOUKA",
+"MRKEV",
+"PROVAZ",
+"DÝNĚ",
+"PILOT",
+"SEDLÁK",
+"PAŘÍŽ",
+"KLIKA",
+"DĚLO",
+"KARTÁČ",
+"PLOT",
+"BOTA",
+"MOTORKA",
+"SUPERHRDINA",
+"BASA",
+"PRÁCE",
+"OHEŇ",
+"STŘELEC",
+"KNIHOVNA",
+"SEDMIKRÁSKA",
+"KOSMONAUT",
+"KLÁVESNICE",
+"NINJA",
+"UPÍR",
+"VÁLKA",
+"ÚL",
+"CÍSAŘ",
+"ORGÁN",
+"HLÍNA",
+"CUKR",
+"UČITEL",
+"TOVÁRNA",
+"PAST",
+"JARO",
+"OBR",
+"CIHLA",
+"JIH",
+"RYS",
+"DUNAJ",
+"SVĚTLO",
+"PRODAVAČ",
+"SRP",
+"METRO",
+"PATRO",
+"NÁRAMEK",
+"LETADLO",
+"ZADEK",
+"ŽIRAFA",
+"LYŽE",
+"STRAŠÁK",
+"PŘÍSTAV",
+"SEDLO",
+"KUKLA",
+"PRADĚD",
+"UZEL",
+"JEŠTĚRKA",
+"KORUNA",
+"ROSA",
+"BOXER",
+"LUPA",
+"KOLOTOČ",
+"MŘÍŽ",
+"ČTYŘLÍSTEK",
+"ZÁKUSEK",
+"BUŇKA",
+"MED",
+"MAŠLE",
+"SFINGA",
+"PODKOVA",
+"KUBA",
+"STUDNA",
+"KUCHAŘKA",
+"PROUD",
+"KOŠILE",
+"MARS",
+"MELOUN",
+"PLASTELÍNA",
+"SALÁM",
+"ŘIDIČ",
+"LIŠKA",
+"ŘEKA",
+"HOUBA",
+"NETORÝR",
+"SLOUP",
+"HYENA",
+"KOULE",
+"KOLOBĚŽKA",
+"KINO",
+"VZDUCH",
+"STATEK",
+"STOLIČKA",
+"ORLOJ",
+"BOROVICE",
+"ŽABKA",
+"BONBON",
+"LEDNICE",
+"MEXIČAN",
+"SLON",
+"KALHOTY",
+"ŽEBRO",
+"KRÁL",
+"RÁDIO",
+"KOLENO",
+"DŽUNGLE",
+"SKLO",
+"PECKA",
+"KŮŽE",
+"BAČKORA",
+"PRASE",
+"VYSOČINA",
+"MERKUR",
+"HOSPODA",
+"PRAČKA",
+"HŮL",
+"OBCHOD",
+"KLEŠTĚ",
+"TLAČÍTKO",
+"FLÉTNA",
+"ČERT",
+"LASER",
+"ŘETĚZ",
+"FOTBALISTA",
+"LÁVA",
+"TRUBKA",
+"BANKÉŘ",
+"RUBIČKA",
+"LÉK",
+"BRATR",
+"OREL",
+"PŘILBA",
+"SUD",
+"NEMOCNICE",
+"ZRCADLO",
+"HÁČEK",
+"POHÁR",
+"ŽEBRÁK",
+"TELEFON",
+"SKŘÍTEK",
+"NOHA",
+"MOTÝLEK",
+"BRATISLAVA",
+"ZOMBIE",
+"LÁHEV",
+"STŘÍBRO",
+"BRNO",
+"MLÉKO",
+"PREZIDENT",
+"LONDÝN",
+"ANDĚL",
+"BRÁNA",
+"RUS",
+"AUSTRÁLIE",
+"ZIMA",
+"MAĎAR",
+"JEHLA",
+"POBŘEŽÍ",
+"KABELKA",
+"KIMONO",
+"KARLŠTEJN",
+"KLOBOUK",
+"LOPATA",
+"VESMÍR",
+"YETTI",
+"LAMPA",
+"SAVEC",
+"DUB",
+"PONOŽKA",
+"ZEMĚ",
+"SUKNĚ",
+"JABLKO",
+"KAMION",
+"DÍRA",
+"KOVÁŘ",
+"KOŘENÍ",
+"UHLÍ",
+"MÍČ",
+"SNĚŽENKA",
+"VLK",
+"MINCE",
+"DÁMA",
+"TLAPA",
+"JAGUÁR",
+"SKÁLA",
+"KULIČKA",
+"ZAHRADNÍK",
+"KOPYTO",
+"DIVADLO",
+"VODOPÁD",
+"MAMUT",
+"ŽIHADLO",
+"TANK",
+"SOVA",
+"BRUSLE",
+"ROH",
+"ZPĚVÁK",
+"ALKOHOL",
+"KRÁTER",
+"POPELKA",
+"VRTULE",
+"POUŤ",
+"HRANICE",
+"ZUBAŘ",
+"BAZÉN",
+"VELBLOUD",
+"PADÁK",
+"MRAKODRAP",
+"CESTA",
+"POŠTA",
+"FARAON",
+"MLÝN",
+"STRAKA",
+"PÓL",
+"KARBANÍK",
+"VOJEVŮDCE",
+"MEDVĚD",
+"ČESNEK",
+"BLANÍK",
+"JEZDEC",
+"KARTA",
+"KOLEJ",
+"SMRK",
+"LIST",
+"NOS",
+"CIZINEC",
+"BŘICHO",
+"KOHOUTEK",
+"TORNÁDO",
+"FYZIK",
+"KOŘEN",
+"BETON",
+"SNÍH",
+"NEVĚSTA",
+"LOUŽE",
+"OKO",
+"PARK",
+"JÁDRO",
+"KAKTUS",
+"BROUK",
+"POLE",
+"NEMOC",
+"ŠTĚSTÍ",
+"LES",
+"ROPA",
+"MATEMATIK",
+"TULIPÁN",
+"NĚMECKO",
+"TOPOL",
+"VÁLEC",
+"BAŽINA",
+"KROUPA",
+"OÁZA",
+"VLAŠTOVKA",
+"PŘÍKOP",
+"ZÁVOD",
+"MAČETA",
+"SATELIT",
+"STŘEP",
+"KOBEREC",
+"BOB",
+"BUBLINA",
+"SALÁT",
+"BRNĚNÍ",
+"ŘEZNÍK",
+"PRAK",
+"OBLOHA",
+"PALMA",
+"ŠÍP",
+"CHOBOT",
+"KATEDRÁLA",
+"LETUŠKA",
+"MROŽ",
+"RUKA",
+"MRÁZ",
+"JESLE",
+"STAN",
+"TRAKTOR",
+"CHAMELEON",
+"BONSAJ",
+"LINKA",
+"ZVONEK",
+"KABÁT",
+"TELEVIZE",
+"ŠTIKA",
+"KOSTKA",
+"PARNÍK",
+"LIMONÁDA",
+"POPEL",
+"ŠVESTKA",
+"PRINCEZNA",
+"DIAMANT",
+"HŘEBEN",
+"HLAS",
+"DÍTĚ",
+"PEC",
+"UCHO",
+"ŠROUBOVÁK",
+"STROM",
+"HRA",
+"VODA",
+"SEVER",
+"HASIČ",
+"MĚSÍC",
+"POČÍTAČ",
+"SLANINA",
+"GOLF",
+"KOPŘIVA",
+"ASTROLOG",
+"DRAK",
+"ŠROUBEK",
+"SESTRA",
+"KLAUN",
+"ŽELEZO",
+"ČARODĚJ",
+"OKNO",
+"TŘEŠEŇ",
+"ANGLIE",
+"KONÍK",
+"AMAZONKA",
+"TRAMVAJ",
+"OLEJ",
+"TESÁK",
+"DIOSAURUS",
+"ŘECKO",
+"ŽELVA",
+"RŮŽE",
+"JEŽEK",
+"POUŠŤ",
+"VĚDEC",
+"VODNÍK",
+"IKONA",
+"PENĚŽENKA",
+"TÁBOR",
+"URAN",
+"SKLEP",
+"BOUŘKA",
+"CHLÉB",
+"ŠPANĚL",
+"RUČNÍK",
+"SEKERA",
+"HOLLYWOOD",
+"ČÁP",
+"BÁSNÍK",
+"PILA",
+"KLEC",
+"HIMALÁJE",
+"PÍSEŇ",
+"TROJA",
+"ZÁKON",
+"LOS",
+"PERNÍK",
+"VLASY",
+"HOROLEZEC",
+"SMETANA",
+"KORÁL",
+"KUCHYNĚ",
+"TITANIK",
+"PRINC",
+"ÚŘAD",
+"ÚDOLÍ",
+"TAŠKA",
+"TRPASLÍK",
+"TROUBA",
+"PODNIKATEL",
+"OSTROV",
+"PRACH",
+"ATLET",
+"MUCHOMŮRKA",
+"ZEBRA",
+"VĚŽ",
+"HŘBITOV",
+"ČEPICE",
+"PANNA",
+"VŮZ",
+"HLINÍK",
+"ASIE",
+"LÉTO",
+"KOČKA",
+"PRŮVODČÍ",
+"KŘIŽÁK",
+"KLAVÍR",
+"NÁDRAŽÍ",
+"SKOKAN",
+"STROJ",
+"FILM",
+"KOŠ",
+"PLAVKY",
+"OŘÍŠEK",
+"KARKULKA",
+"SKLENICE",
+"KANÁL",
+"ČELO",
+"GORILA",
+"VRTULNÍK",
+"STOPA",
+"RÁJ",
+"SVETR",
+"PYRAMIDA",
+"CESTOVATEL",
+"BRAMBORA",
+"BERÁNEK",
+"HARMONIKA",
+"ROZHLEDNA",
+"NAPOLEON",
+"DRÁT",
+"RAKETA",
+"TĚLOCVIČNA",
+"ŽITO",
+"UHLÍK",
+"DRÁHA",
+"ANTARKTIDA",
+"BUBÍNEK",
+"KAPSA",
+"PAMPELIŠKA",
+"OTEC",
+"VÍLA",
+"KRÁPNÍK",
+"KYTARA",
+"PTAKOPYSK",
+"VĚTRNÍK",
+"AUTOBUS",
+"VÍTR",
+"NŮŽ",
+"ČECH",
+"JED",
+"SLUNEČNÍK",
+"POTÁPĚČ",
+"JEŽIBABA",
+"KNOFLÍK",
+"VLKODLAK",
+"JAPONSKO",
+"PASTELKA",
+"KRK",
+"PLECH",
+"ROBOT",
+"NOC",
+"DÉŠŤ",
+"PAS",
+"KOMÍN",
+"DUCH",
+"PANÁK",
+"KANADA",
+"KRÁVA",
+"BRAZÍLIE",
+"PES",
+"ŽEHLIČKA",
+"KUŘE",
+"HORA",
+"CHOBOTNICE",
+"VLAK",
+"HUDBA",
+"KOSA",
+"TRÁVA",
+"LOKOMOTIVA",
+"POLÉVKA",
+"KAMARÁD",
+"VELRYBA",
+"HODINKY",
+"PROGRAMÁTOR",
+"VÍČKO",
+"VÍDEŇ",
+"JESKYNĚ",
+"GRANÁT",
+"HOTEL",
+"MÍR",
+"PAPÍR",
+"PRAHA",
+"AUTO",
+"KOUZLO",
+"VIDLIČKA",
+"KVĚTINA",
+"PAVOUK",
+"ČÍNA",
+"OVCE",
+"MOŘE",
+"TALÍŘ",
+"VÁHA",
+"PEKING",
+"LÁTKA",
+"SLUNCE",
+"VESNICE",
+"ŠPAGETA",
+"KOLO",
+"SŮL",
+"DŮM",
+"FRANCIE",
+"ČOKOLÁDA",
+"LEV",
+"POLICISTA",
+"HVĚZDA",
+"DISK",
+"ŠATY",
+"OPICE",
+"POLKA",
+"HERMELÍN",
+"ULICE",
+"VEJCE",
+"MĚSTO",
+"POMERANČ",
+"LÍZÁTKO",
+"RUKAVICE",
+"MUŠKA",
+"NEPŘÍTEL",
+"MYŠ",
+"ZUB",
+"ZÁMEK",
+"RADOST",
+"BIOLOG",
+"METEORIT",
+"KUFR",
+"POEZIE",
+"LOUKA",
+"MOSKVA",
+"BRÝLE",
+"PLACKA",
+"DVEŘE",
+"MATKA",
+"KAPR",
+"ŠVEC",
+"BAGR",
+"ŠAMAN",
+"TATRY",
+"MŮSTEK",
+"MRAK",
+"NÁČELNÍK",
+"PÁRA",
+"ŠKOLKA",
+"RYTÍŘ",
+"HOUSENKA",
+"ŠVÝCARSKO",
+"GUMA",
+"SMRT",
+"CITRON",
+"MORAVA",
+"PÁREK",
+"MUMIE",
+"LOKET",
+"VEČERNÍČEK",
+"ŘÍM",
+"ŠÁTEK",
+"PIZZA",
+"PAROHY",
+"INDIÁN",
+"MOBIL",
+"ŠIŠKA",
+"LEDŇÁČEK",
+"TRŮN",
+"ŘASA",
+"ZMRZLINA",
+"VRAK",
+"HOUSLE",
+"KÁVA",
+"ZÁPAD",
+"PŠTROS",
+"ZVON",
+"SÍŤ",
+"ŠIPKA",
+"AMERIKA",
+"PLANETA",
+"MEČ",
+"FILOZOF",
+"MASO",
+"UMĚLEC",
+"KNÍR",
+"KOSATKA",
+"TABULE",
+"JISKRA",
+"KRÁLÍK",
+"BENÁTKY",
+"HŘIŠTĚ",
+"VČELA",
+"LOĎ",
+"TREZOR",
+"PRALES",
+"CHALOUPKA",
+"OLYMPIÁDA",
+]
+
+var words = [];
+
+for (let i=0; i<25; i++) {
+    let j = Math.floor(Math.random()*(all_words.length));
+    let word = all_words[j];
+    console.log(i, j, word, "card-" + i, );
+    all_words.splice(j, 1);
+    let e = document.querySelector("#card-" + i + " .word").textContent = word;
+}
+</script>
