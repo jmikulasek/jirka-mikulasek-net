@@ -2,27 +2,54 @@
 <html>
     <head>
         <meta charset=utf-8>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Hádání obrázků</title>
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
         <style>
-            html, body {font-family: serif; font-size: 12pt; margin: 0; padding: 0; line-height: 1.4em;}
-            nav { padding: 0.5rem; border-bottom: solid 1px #ddd; background-color: #f0f0f0;}
-            nav > ul { list-style-type: none; margin: 0; padding: 0;}
-            nav > ul > li { display: inline-block;}
-            nav > ul > li::after { content: " /";}
-            nav > ul > li:last-of-type::after { content: "";}
-            main { max-width: 1024px; margin: 2rem auto;}
+            @media screen and (width >= 920px) {
+                    html, body {font-family: serif; font-size: 12pt; margin: 0; padding: 0; line-height: 1.4em;}
+                    nav { padding: 0.5rem; border-bottom: solid 1px #ddd; background-color: #f0f0f0;}
+                    nav > ul { list-style-type: none; margin: 0; padding: 0;}
+                    nav > ul > li { display: inline-block;}
+                    nav > ul > li::after { content: " /";}
+                    nav > ul > li:last-of-type::after { content: "";}
+                    main { max-width: 1024px; margin: 2rem auto;}
 
-            h1 { font-size: 200%; margin: 0;}
-            h2 { font-size: 140%; margin: 2rem 0 1rem 0; padding-bottom: 0;}
+                    h1 { font-size: 200%; margin: 0;}
+                    h2 { font-size: 140%; margin: 2rem 0 1rem 0; padding-bottom: 0;}
 
-            p.to-be-recorded { border-top: solid 1px #ddd; border-bottom: solid 1px #ddd; padding: 0.4rem; color: #555;}
+                    p.to-be-recorded { border-top: solid 1px #ddd; border-bottom: solid 1px #ddd; padding: 0.4rem; color: #555;}
 
-            table.seznam { border-collapse: collapse; width: 100%; margin-top: 2rem;}
-            table.seznam tr { border-top: solid 1px #ddd;}
-            table.seznam tr:last-of-type { border-bottom: solid 1px #ddd;}
-            table.seznam tr > td { padding: 0.5rem 0;}
-            table.seznam tr > td:last-of-type { text-align: right;}
+                    table.seznam { border-collapse: collapse; width: 100%; margin-top: 2rem;}
+                    table.seznam tr { border-top: solid 1px #ddd;}
+                    table.seznam tr:last-of-type { border-bottom: solid 1px #ddd;}
+                    table.seznam tr > td { padding: 0.5rem 0;}
+                    table.seznam tr > td:last-of-type { text-align: right;}
+            }
+
+            @media screen and (width < 920px) {
+                    html, body {font-family: serif; font-size: 12pt; margin: 0; padding: 0; line-height: 1.4em;}
+                    nav { padding: 0.5rem; border-bottom: solid 1px #ddd; background-color: #f0f0f0;}
+                    nav > ul { list-style-type: none; margin: 0; padding: 0;}
+                    nav > ul > li { display: inline-block;}
+                    nav > ul > li::after { content: " /";}
+                    nav > ul > li:last-of-type::after { content: "";}
+                    main { max-width: 1024px; margin: 2rem 1rem;}
+
+                    h1 { font-size: 200%; margin: 0;}
+                    h2 { font-size: 140%; margin: 2rem 0 1rem 0; padding-bottom: 0;}
+
+                    p.to-be-recorded { border-top: solid 1px #ddd; border-bottom: solid 1px #ddd; padding: 0.4rem; color: #555;}
+
+                    table.seznam { display: flex; flex-direction: column; width: 100%; margin-top: 2rem;}
+                    table.seznam tr { display: flex; flex-direction: row; border-top: solid 1px #aaa; flex-wrap: wrap; column-gap: 1rem;}
+                    table.seznam tr:last-of-type { border-bottom: solid 1px #aaa;}
+                    table.seznam tr > td { padding: 0.5rem 0;}
+                    table.seznam tr > td:nth-child(1) { font-size: 1.2rem; width: 100%;}
+                    table.seznam tr > td:last-of-type { text-align: right;}
+            }
+
         </style>
     </head>
     <body>
