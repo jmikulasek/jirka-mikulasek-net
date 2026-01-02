@@ -14,44 +14,85 @@
 
         @media screen and (width >= 920px) {
             h1 { text-align: center;}
-            #content-wrapper {
+            h2 { display: none;}
+            main {
                 width: 900px; margin: 0 auto;
-                display: flex;
+                display: grid;
+                grid-template-columns: 1fr 420px 1fr;
+                grid-template-areas: "personal photo connections" "games games games";
                 flex-direction: row;
                 align-items: center;
             }
 
-            .menu { list-style-type: none; padding: 0; margin: 0;}
-            .menu > li { background: url(/static/li-bg.png) center repeat-x; padding: 0; text-align: right; height: 51px; line-height: 51px;}
-            .menu > li > a {
+            #photo { border: solid 10px #aaa; grid-area: photo;}
+            #section-personal { grid-area: personal;}
+            #section-personal ul { list-style-type: none; padding: 0; margin: 0;}
+            #section-personal ul > li { background: url(/static/li-bg.png) center repeat-x; padding: 0; height: 51px; line-height: 51px;  text-align: left;}
+            #section-personal ul > li > a {
+                background: url(/static/left-a-bg.png) right center no-repeat;
+                color: #fff;
+                padding: 0.3em 1.4em 0.3em 0.7em;
+                margin: 10px 0 10px 0;
+                height: 31px; line-height: 31px;
+                vertical-align: center;
+            }
+
+            #section-connections { grid-area: connections;}
+            #section-connections ul { list-style-type: none; padding: 0; margin: 0;}
+            #section-connections ul > li { background: url(/static/li-bg.png) center repeat-x; padding: 0; text-align: right; height: 51px; line-height: 51px;}
+            #section-connections ul > li > a {
                 background: url(/static/right-a-bg.png) left center no-repeat;
                 color: #fff;
                 padding: 0.3em 0.7em 0.3em 1.4em; margin: 10px 0 10px 0; height: 31px; line-height: 31px; vertical-align: center;
             }
-            .menu__left > li { text-align: left;}
-            .menu__left > li > a { background: url(/static/left-a-bg.png) right center no-repeat; padding: 0.3em 1.4em 0.3em 0.7em;}
 
-            #left-menu { flex-basis: 50%;}
-            #foto { border: solid 10px #aaa;}
-            #right-menu { flex-basis: 50%;}    
+            #section-games { grid-area: games; justify-self: center; background: url(/static/li-bg.png) center repeat-y;}
+            #section-games ul { list-style-type: none; padding: 0; margin: 2rem auto 0 auto; text-align: center;}
+            #section-games ul li {background-color: #aaa; padding: 0 0.7em 0 0.7em; height: 41px; line-height: 41px; margin-top: 1rem;}
+            #section-games ul li a {color: #fff;}
         }
 
-        @media screen and (width < 920px) {
+        @media screen and (width >= 550px) and (width < 920px) {
             h1 { text-align: center;}
-            #content-wrapper {
+            h2 { text-align: center; background-color: #fff; border: solid 1px #aaa; font-size: 1em;  padding: 0 0.7em 0 0.7em; height: 41px; line-height: 41px;}
+            main {
+                margin: 0 auto;
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                grid-template-rows: 1fr auto;
+                grid-template-areas: "photo photo photo" "personal connections games";
+                flex-direction: row;
+                align-items: start;
+                justify-items: center;
+            }
+
+            #photo { border: solid 10px #aaa; grid-area: photo; width: 90%;}
+            #section-personal { grid-area: personal; justify-self: center; background: url(/static/li-bg.png) center repeat-y;}
+            #section-connections { grid-area: connections; justify-self: center; background: url(/static/li-bg.png) center repeat-y;}
+            #section-games { grid-area: games; justify-self: center; background: url(/static/li-bg.png) center repeat-y;}
+
+            ul { list-style-type: none; padding: 0; margin: 2rem auto 0 auto; text-align: center;}
+            ul li {background-color: #aaa; padding: 0 0.7em 0 0.7em; height: 41px; line-height: 41px; margin-top: 1rem;}
+            ul li a {color: #fff;}
+            ul li a:visited {color: #fff;}
+        }
+
+        @media screen and (width < 550px) {
+            h1 { text-align: center;}
+            h2 { font-size: 100%; font-weight: normal; margin: 0; padding: 0.7rem; background-color: #aaa; color: #fff; border-bottom: solid 1px #aaa; text-transform: uppercase;}
+            main {
                 display: flex;
                 flex-direction: column;
             }
 
-            .menu { list-style-type: none; padding: 0; margin: 0; border-bottom: solid 2px #aaa;}
-            .menu > li { border-bottom: solid 1px #aaa; padding: 0.7rem;}
-            .menu > li > a {}
-            .menu__left > li {}
-            .menu__left > li > a {}
+            ul { list-style-type: none; padding: 0; margin: 0;}
+            ul > li { border-bottom: dotted 1px #aaa; padding: 0.7rem;}
+            ul > li:last-child { border-bottom: 0;}
 
-            #left-menu { order: 1; }
-            #foto { order: 0; border: solid 10px #aaa;}
-            #right-menu { order: 2}    
+            #photo { order: 0; border: solid 10px #aaa;}
+            #section-personal { order: 1; border-top: solid 3px #aaa; margin-top: 0.5rem;}
+            #section-connections { order: 2}    
+            #section-games { order: 3;  border-bottom: solid 3px #aaa;}
         }
 
 </style>
@@ -59,23 +100,34 @@
 <body>
     <h1>Jirka Mikulášek / Králík</h1>
 
-    <div id="content-wrapper">
-        <ul class="menu menu__left" id="left-menu">
-            <li><a href="http://kralicizapisnicek.blogspot.cz/">Králičí zápisníček</a></li>
-            <li><a href="http://instagram.com/jmikulasek">Instagram</a></li>
-            <li><a href="https://photos.app.goo.gl/cCKPHMA7ARKtJznG6">Králičí fotky</a></li>
-            <li><a href="/texty/basnicky/">Básničky</a></li>
-            <li><a href="/wishlist/">Wishlist</a></li>
-            <li><a href="/hry/hadani-obrazku/">Hádání obrázků</a></li>
-            <li><a href="https://jmikulasek.github.io/kryci-jmena-hraci-deska/">Krycí jména</a></li>
-        </ul>
-        <img src="foto.jpg" id="foto">
-        <ul class="menu" id="right-menu">
-            <li><a href="http://jiri.mikulasek.net">Živnost</a></li>
-            <li><a href="http://www.safetrees.cz">Zaměstnání</a></li>
-            <li><a href="http://www.betanie.cz">Betanie</a></li>
-            <li><a href="http://www.betanie.cz/dorost/">Dorost</a></li>
-        </ul>
-    </div>
+    <main>
+        <img src="foto.jpg" id="photo">
+        <section id="section-personal">
+            <h2>Osobní</h2>
+            <ul>
+                <li><a href="http://kralicizapisnicek.blogspot.cz/">Králičí zápisníček</a></li>
+                <li><a href="http://instagram.com/jmikulasek">Instagram</a></li>
+                <li><a href="https://photos.app.goo.gl/cCKPHMA7ARKtJznG6">Králičí fotky</a></li>
+                <li><a href="/texty/basnicky/">Básničky</a></li>
+                <li><a href="/wishlist/">Wishlist</a></li>
+            </ul>
+        </section>
+        <section id="section-connections">
+            <h2>Propojení</h2>
+            <ul>
+                <li><a href="http://jiri.mikulasek.net">Živnost</a></li>
+                <li><a href="http://www.safetrees.cz">Zaměstnání</a></li>
+                <li><a href="http://www.betanie.cz">Betanie</a></li>
+                <li><a href="http://www.betanie.cz/dorost/">Dorost</a></li>
+            </ul>
+        </section>
+        <section id="section-games">
+            <h2>Hry</h2>
+            <ul>
+                <li><a href="/hry/hadani-obrazku/">Hádání obrázků</a></li>
+                <li><a href="https://jmikulasek.github.io/kryci-jmena-hraci-deska/">Krycí jména</a></li>
+            </ul>
+        </section>
+    </main>
 </body>
 </html>
